@@ -1,0 +1,9 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- QR-like icon -->
+    <rect x="10" y="10" width="10" height="10" fill="#83C5BE"/>
+    <rect x="30" y="10" width="10" height="10" fill="#83C5BE"/>
+    <rect x="10" y="30" width="10" height="10" fill="#83C5BE"/>
+    <path d="M20 20 L30 20 L30 30 L20 30 Z" stroke="#83C5BE" stroke-width="2"/>
+    <!-- Tracetein text -->
+    <text x="50" y="35" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#1D2A38">Tracetein</text>
+</svg>

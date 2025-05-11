@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            document.query individuales(this.getAttribute('href')).scrollIntoView({
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
         });
     });
 
-    // Form Submission
+    // Form Submission (Mock)
     window.submitForm = function() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
@@ -37,28 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Please fill out all fields.');
         }
-    };
-
-    // Mock QR Scanner
-    window.startMockScan = function() {
-        const scanner = document.getElementById('scanner');
-        const productData = document.getElementById('product-data');
-        const scanButton = document.querySelector('.scanner-container .cta-button');
-
-        // Disable button during scan
-        scanButton.disabled = true;
-        scanButton.textContent = 'Scanning...';
-
-        // Start scan animation
-        scanner.classList.add('active');
-
-        // Simulate scan delay
-        setTimeout(() => {
-            scanner.classList.remove('active');
-            productData.style.display = 'block';
-            scanButton.disabled = false;
-            scanButton.textContent = 'Scan QR Code';
-        }, 2000);
     };
 });
 
@@ -77,3 +55,99 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+// QR Scanner
+let video = null;
+let stream = null;
+
+function startScanner() {
+    const videoElement = document.getElementById('scanner-video');
+    const canvasElement = document.getElementById('scanner-canvas');
+    const canvas = canvasElement.getContext('2d');
+    const productData = document.getElementById('product-data');
+    const startButton = document.querySelector('.scanner-controls .cta-button');
+
+    if (!video) {
+        video = videoElement;
+    }
+
+    // Request webcam access
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(mediaStream => {
+            stream = mediaStream;
+            video.srcObject = stream;
+            video.play();
+            startButton.textContent = 'Stop Scanner';
+            startButton.onclick = stopScanner;
+            requestAnimationFrame(tick);
+        })
+        .catch(err => {
+            alert('Error accessing webcam: ' + err.message);
+            startButton.textContent = 'Start Scanner';
+            startButton.onclick = startScanner;
+        });
+
+    function tick() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                inversionAttempts: 'dontInvert',
+            });
+
+            if (code) {
+                // Simulate QR code data for demo
+                if (code.data) {
+                    productData.style.display = 'block';
+                    stopScanner();
+                }
+            }
+        }
+        if (stream) {
+            requestAnimationFrame(tick);
+        }
+    }
+}
+
+function stopScanner() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+        video.srcObject = null;
+        const startButton = document.querySelector('.scanner-controls .cta-button');
+        startButton.textContent = 'Start Scanner';
+        startButton.onclick = startScanner;
+    }
+}
+
+function scanQRImage() {
+    const input = document.getElementById('qr-upload');
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                inversionAttempts: 'dontInvert',
+            });
+
+            if (code) {
+                document.getElementById('product-data').style.display = 'block';
+            } else {
+                alert('No QR code found in the image.');
+            }
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
