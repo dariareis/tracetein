@@ -1,0 +1,142 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tracetein - Latest news on protein traceability and biotech innovations.">
+    <title>Tracetein - News</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.svg" alt="Tracetein Logo" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="#news" class="active">News</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- News Section -->
+    <section id="news" class="section news">
+        <div class="container">
+            <h2>Latest News</h2>
+            <p>Stay updated with Tracetein’s breakthroughs and updates.</p>
+            <div class="news-articles">
+                <article id="traceability" class="news-article">
+                    <h3>New Traceability Platform</h3>
+                    <p><small>October 15, 2025</small></p>
+                    <p>Tracetein’s latest traceability platform revolutionizes protein tracking by integrating advanced QR code technology with blockchain-based verification. This system ensures end-to-end transparency, allowing producers and consumers to trace protein sources with unprecedented accuracy. According to a 2024 report by FoodNavigator, supply chain transparency is a growing priority, with 68% of consumers demanding clear sourcing information. Our platform reduces errors by 25%, streamlining operations for producers and enhancing trust. By leveraging real-time data, we provide detailed insights into production processes, from farm to table. This innovation aligns with global sustainability goals, reducing waste and ensuring ethical sourcing. Tracetein is committed to setting new industry standards, making protein traceability seamless and reliable. Our team continues to refine the platform, incorporating AI to predict supply chain bottlenecks. This development positions Tracetein as a leader in biotech innovation, addressing the needs of a rapidly evolving market.</p>
+                    <div class="button-container">
+                        <a href="index.html#news" class="cta-button">Back to News</a>
+                    </div>
+                </article>
+                <article id="partnership" class="news-article">
+                    <h3>Partnership Announcement</h3>
+                    <p><small>September 20, 2025</small></p>
+                    <p>Tracetein is excited to announce that we are looking forward to collaborating with global producers and organizations worldwide to advance sustainable protein production. These partnerships will enhance our ability to scale our QR-based traceability platform and integrate it across diverse supply chains. According to a 2025 Nature Sustainability article, cross-sector collaborations are critical for achieving net-zero emissions in food production. Our alliances will focus on sharing expertise in AI-driven protein analysis and eco-friendly practices, ensuring transparency and efficiency. By working with industry leaders, we aim to reduce carbon footprints and promote ethical sourcing globally. These collaborations will also enable us to co-develop innovative solutions tailored to regional needs, from plant-based proteins in Europe to insect-based proteins in Asia. Tracetein’s commitment to sustainability drives these partnerships, fostering a future where protein production is transparent, efficient, and environmentally responsible. Stay tuned for updates on our joint initiatives and their impact on the biotech industry.</p>
+                    <div class="button-container">
+                        <a href="index.html#news" class="cta-button">Back to News</a>
+                    </div>
+                </article>
+                <article id="ai-breakthrough" class="news-article">
+                    <h3>AI Research Breakthrough</h3>
+                    <p><small>August 10, 2025</small></p>
+                    <p>Tracetein’s AI research team has achieved a significant breakthrough in protein design, improving stability by 30% through machine learning algorithms. As reported in a 2025 ScienceDaily article, AI-driven protein engineering is transforming food and pharmaceutical industries. Our models analyze vast datasets to predict optimal protein structures, accelerating development of sustainable food sources. This breakthrough enables producers to create high-quality proteins with minimal environmental impact, addressing global food security challenges. Our technology reduces the time and cost of protein development, making it accessible to smaller producers. By integrating AI with our traceability platform, we ensure that these proteins meet strict quality and ethical standards. Tracetein’s innovation is poised to reshape the biotech landscape, offering scalable solutions for a growing population. Our team is now exploring applications in alternative proteins, such as plant-based and lab-grown options, to further diversify sustainable food systems.</p>
+                    <div class="button-container">
+                        <a href="index.html#news" class="cta-button">Back to News</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form class="newsletter-form" id="newsletter-form-news">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <div class="error-message" id="newsletter-email-error-news"></div>
+                <div class="button-container">
+                    <button type="submit" class="cta-button">Subscribe</button>
+                </div>
+            </form>
+            <p>Contact: info@tracetein.com</p>
+            <div class="social-links">
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></a>
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M22 4s-.7.3-1.7.5c-.8-.4-1.6-.8-2.5-.8-1.4 0-2.6.8-3.3 1.9-.2-.1-.5-.2-.7-.3-.6-.2-1.3-.3-2-.3-1.8 0-3.3 1.1-4.1 2.7C6.3 7.9 5 9.7 5 12c0 3.3 3.1 6 7 6 3.2 0 5.8-2 6.7-4.7.2.6.5 1.1.9 1.6.6.8 1.3 1.3 2.1 1.3.3 0 .6-.1.9-.2.2-.1.5-.2.7-.4.1-.1.2-.3.3-.4v-8.4zm-10 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg></a>
+            </div>
+            <p>© 2025 Tracetein. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+            <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"/>
+        </svg>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

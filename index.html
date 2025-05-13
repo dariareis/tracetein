@@ -54,7 +54,6 @@
             <div class="logo">
                 <a href="index.html">
                     <img src="logo.svg" alt="Tracetein Logo" class="logo-img">
-                    <span class="company-name">Tracetein</span>
                 </a>
             </div>
             <nav class="nav">
@@ -64,6 +63,7 @@
                     <li><a href="#solutions">Solutions</a></li>
                     <li><a href="research.html">Research</a></li>
                     <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="news.html">News</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="burger">
@@ -77,10 +77,18 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="molecule-animation">
+            <svg width="200" height="200" viewBox="0 0 100 100">
+                <circle class="molecule-core" cx="50" cy="50" r="10" fill="#2A6CEA"/>
+                <circle class="molecule-orbit orbit1" cx="50" cy="30" r="5" fill="#FF9F00"/>
+                <circle class="molecule-orbit orbit2" cx="70" cy="50" r="5" fill="#FF9F00"/>
+                <circle class="molecule-orbit orbit3" cx="50" cy="70" r="5" fill="#FF9F00"/>
+            </svg>
+        </div>
         <div class="hero-content">
-            <h1>Innovate with Tracetein</h1>
-            <p>Revolutionizing protein traceability and biotech solutions for a sustainable future.</p>
-            <a href="#contact" class="cta-button">Get in Touch</a>
+            <h1 class="animate-hero">Innovate with Tracetein</h1>
+            <p class="animate-hero">Revolutionizing protein traceability and biotech solutions for a sustainable future.</p>
+            <a href="#contact" class="cta-button animate-hero">Get in Touch</a>
         </div>
     </section>
 
@@ -114,19 +122,19 @@
             <p>Explore our innovative tools for biotech and traceability.</p>
             <div class="solutions-grid">
                 <div class="solution-card">
-                    <img src="https://via.placeholder.com/300x200?text=Traceability" alt="Traceability">
+                    <img src="images/traceability.jpg" alt="Protein Traceability">
                     <h3>Protein Traceability</h3>
                     <p>Track proteins from source to consumer with our QR-based system.</p>
                     <a href="#contact" class="cta-button">Learn More</a>
                 </div>
                 <div class="solution-card">
-                    <img src="https://via.placeholder.com/300x200?text=AI+Analysis" alt="AI Analysis">
+                    <img src="images/ai-analysis.jpg" alt="AI Analysis">
                     <h3>AI Analysis</h3>
                     <p>Leverage AI for protein optimization and quality control.</p>
                     <a href="#contact" class="cta-button">Learn More</a>
                 </div>
                 <div class="solution-card">
-                    <img src="https://via.placeholder.com/300x200?text=Sustainability" alt="Sustainability">
+                    <img src="images/sustainability.jpg" alt="Sustainability">
                     <h3>Sustainability</h3>
                     <p>Support eco-friendly protein production with our solutions.</p>
                     <a href="#contact" class="cta-button">Learn More</a>
@@ -145,19 +153,25 @@
                     <h3>New Traceability Platform</h3>
                     <p><small>October 15, 2025</small></p>
                     <p>Our latest platform enhances protein tracking accuracy.</p>
-                    <a href="#" class="cta-button">Read More</a>
+                    <div class="button-container">
+                        <a href="news.html#traceability" class="cta-button">Read More</a>
+                    </div>
                 </div>
                 <div class="news-card">
                     <h3>Partnership Announcement</h3>
                     <p><small>September 20, 2025</small></p>
                     <p>Collaborating with global biotech leaders.</p>
-                    <a href="#" class="cta-button">Read More</a>
+                    <div class="button-container">
+                        <a href="news.html#partnership" class="cta-button">Read More</a>
+                    </div>
                 </div>
                 <div class="news-card">
                     <h3>AI Research Breakthrough</h3>
                     <p><small>August 10, 2025</small></p>
                     <p>Advancements in protein design with AI.</p>
-                    <a href="#" class="cta-button">Read More</a>
+                    <div class="button-container">
+                        <a href="news.html#ai-breakthrough" class="cta-button">Read More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,20 +194,9 @@
     <section id="app" class="section app">
         <div class="container">
             <h2>Our Mobile App</h2>
-            <p>Experience Tracetein’s traceability on the go.</p>
-            <div class="app-grid">
-                <div class="app-card">
-                    <img src="https://via.placeholder.com/300x600?text=App+Screen+1" alt="App Screen 1">
-                    <p>Scan QR codes effortlessly.</p>
-                </div>
-                <div class="app-card">
-                    <img src="https://via.placeholder.com/300x600?text=App+Screen+2" alt="App Screen 2">
-                    <p>View detailed traceability data.</p>
-                </div>
-                <div class="app-card">
-                    <img src="https://via.placeholder.com/300x600?text=App+Screen+3" alt="App Screen 3">
-                    <p>Stay updated with real-time insights.</p>
-                </div>
+            <p>Coming Soon</p>
+            <div class="app-coming-soon">
+                <img src="https://via.placeholder.com/300x600?text=App+Coming+Soon" alt="App Coming Soon">
             </div>
         </div>
     </section>
@@ -201,15 +204,19 @@
     <!-- Contact Section -->
     <section id="contact" class="section contact">
         <div class="container">
-            <h2>Contact Us</h2>
-            <p>Reach out to learn how Tracetein can transform your business.</p>
-            <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form" id="contact-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <div class="error-message" id="email-error"></div>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit" class="cta-button send-message">Send Message</button>
-            </form>
+            <div class="contact-card">
+                <h2>Contact Us</h2>
+                <p>Reach out to learn how Tracetein can transform your business.</p>
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form" id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <div class="error-message" id="email-error"></div>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <div class="button-container">
+                        <button type="submit" class="cta-button send-message">Send Message</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -220,9 +227,11 @@
             <form class="newsletter-form" id="newsletter-form">
                 <input type="email" name="email" placeholder="Your Email" required>
                 <div class="error-message" id="newsletter-email-error"></div>
-                <button type="submit" class="cta-button">Subscribe</button>
+                <div class="button-container">
+                    <button type="submit" class="cta-button">Subscribe</button>
+                </div>
             </form>
-            <p>Contact: info@tracetein.com | +1 (123) 456-7890</p>
+            <p>Contact: info@tracetein.com</p>
             <div class="social-links">
                 <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></a>
                 <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M22 4s-.7.3-1.7.5c-.8-.4-1.6-.8-2.5-.8-1.4 0-2.6.8-3.3 1.9-.2-.1-.5-.2-.7-.3-.6-.2-1.3-.3-2-.3-1.8 0-3.3 1.1-4.1 2.7C6.3 7.9 5 9.7 5 12c0 3.3 3.1 6 7 6 3.2 0 5.8-2 6.7-4.7.2.6.5 1.1.9 1.6.6.8 1.3 1.3 2.1 1.3.3 0 .6-.1.9-.2.2-.1.5-.2.7-.4.1-.1.2-.3.3-.4v-8.4zm-10 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg></a>
