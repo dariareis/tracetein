@@ -1,0 +1,134 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tracetein - High-protein recipes for a sustainable diet.">
+    <title>Tracetein - Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.svg" alt="Tracetein Logo" class="logo-img">
+                    <span class="company-name">Tracetein</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="#recipes" class="active">Recipes</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Recipes Section -->
+    <section id="recipes" class="section recipes">
+        <div class="container">
+            <h2>High-Protein Recipes</h2>
+            <p>Enjoy sustainable, protein-packed meals with our curated recipes.</p>
+            <div class="recipes-grid">
+                <div class="recipe-card">
+                    <img src="https://via.placeholder.com/300x200?text=Protein+Shake" alt="Protein Shake">
+                    <h3>Protein Power Shake</h3>
+                    <p>Blend plant-based protein with almond milk and berries for a quick boost.</p>
+                    <a href="#" class="cta-button">View Recipe</a>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://via.placeholder.com/300x200?text=Insect+Burger" alt="Insect Burger">
+                    <h3>Insect Protein Burger</h3>
+                    <p>A sustainable, high-protein patty with fresh veggies.</p>
+                    <a href="#" class="cta-button">View Recipe</a>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://via.placeholder.com/300x200?text=Quinoa+Bowl" alt="Quinoa Bowl">
+                    <h3>Quinoa Protein Bowl</h3>
+                    <p>Combine quinoa, tofu, and avocado for a nutritious meal.</p>
+                    <a href="#" class="cta-button">View Recipe</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form class="newsletter-form" id="newsletter-form-recipes">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <div class="error-message" id="newsletter-email-error-recipes"></div>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+            <p>Contact: info@tracetein.com | +1 (123) 456-7890</p>
+            <div class="social-links">
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></a>
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M22 4s-.7.3-1.7.5c-.8-.4-1.6-.8-2.5-.8-1.4 0-2.6.8-3.3 1.9-.2-.1-.5-.2-.7-.3-.6-.2-1.3-.3-2-.3-1.8 0-3.3 1.1-4.1 2.7C6.3 7.9 5 9.7 5 12c0 3.3 3.1 6 7 6 3.2 0 5.8-2 6.7-4.7.2.6.5 1.1.9 1.6.6.8 1.3 1.3 2.1 1.3.3 0 .6-.1.9-.2.2-.1.5-.2.7-.4.1-.1.2-.3.3-.4v-8.4zm-10 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg></a>
+            </div>
+            <p>© 2025 Tracetein. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+            <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"/>
+        </svg>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

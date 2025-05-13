@@ -42,144 +42,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracetein - Digital Labeling for Alternative Proteins</title>
+    <meta name="description" content="Tracetein - Innovating protein traceability and biotech solutions.">
+    <title>Tracetein - Biotech Innovation</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo.svg" alt="Tracetein Logo" class="logo-img">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.svg" alt="Tracetein Logo" class="logo-img">
+                    <span class="company-name">Tracetein</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#solution">Solution</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section (Unchanged) -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Trust the Food of the Future</h1>
-            <p>A digital labeling platform that makes alternative proteins transparent, trustworthy, and sustainable.</p>
-            <a href="#solution" class="cta-button">Discover More</a>
-        </div>
-        <div class="hero-animation">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+            <h1>Innovate with Tracetein</h1>
+            <p>Revolutionizing protein traceability and biotech solutions for a sustainable future.</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
         </div>
     </section>
 
-    <!-- Solution Section (Modernized) -->
-    <section id="solution" class="section solution">
-        <h2>Our Solution</h2>
-        <p>Empowering transparency with cutting-edge digital tools.</p>
-        <div class="features">
-            <div class="feature-card">
-                <div class="icon">🌱</div>
-                <h3>Traceability</h3>
-                <p>Scan QR codes to uncover ingredient origins and verified sustainability metrics.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🌍</div>
-                <h3>Ethical Scoring</h3>
-                <p>Evaluate the environmental and ethical impact of your food choices.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🧠</div>
-                <h3>AI Personalization</h3>
-                <p>Receive tailored insights based on your dietary preferences and values.</p>
-            </div>
-        </div>
-        <div class="qr-scanner">
-            <h3>Try Our QR Scanner</h3>
-            <p>Scan a QR code or upload an image to view a product’s digital passport.</p>
-            <div class="scanner-container">
-                <video id="scanner-video" class="scanner-video" autoplay></video>
-                <canvas id="scanner-canvas" style="display: none;"></canvas>
-                <div class="scanner-overlay"></div>
-                <div class="scanner-controls">
-                    <button class="cta-button" onclick="startScanner()">Start Scanner</button>
-                    <label class="cta-button secondary">
-                        Upload QR Image
-                        <input type="file" id="qr-upload" accept="image/*" style="display: none;" onchange="scanQRImage()">
-                    </label>
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2>About Tracetein</h2>
+            <p>We pioneer cutting-edge biotech solutions, leveraging AI and traceability to transform the protein industry.</p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>Empowering sustainable protein production with transparency and innovation.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Meet Our Founder</h3>
+                    <img src="images/daria.jpg" alt="Daria, Founder" class="founder-photo">
+                    <p>Leading the charge in biotech innovation.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Technology</h3>
+                    <p>Advanced AI and QR-based traceability for unmatched precision.</p>
                 </div>
             </div>
-            <div class="product-data" id="product-data" style="display: none;">
-                <h4>Product: Algae-Based Protein Bar</h4>
-                <p><strong>Ingredients:</strong> Chlorella, pea protein, organic oats, cocoa.</p>
-                <p><strong>Origin:</strong> Chlorella from sustainable farms in Netherlands.</p>
-                <p><strong>Environmental Impact:</strong> 85% less CO₂ than beef, 90% less water.</p>
-                <p><strong>Ethical Score:</strong> 100% animal-free, B Corp certified.</p>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="section solutions">
+        <div class="container">
+            <h2>Our Solutions</h2>
+            <p>Explore our innovative tools for biotech and traceability.</p>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <img src="https://via.placeholder.com/300x200?text=Traceability" alt="Traceability">
+                    <h3>Protein Traceability</h3>
+                    <p>Track proteins from source to consumer with our QR-based system.</p>
+                    <a href="#contact" class="cta-button">Learn More</a>
+                </div>
+                <div class="solution-card">
+                    <img src="https://via.placeholder.com/300x200?text=AI+Analysis" alt="AI Analysis">
+                    <h3>AI Analysis</h3>
+                    <p>Leverage AI for protein optimization and quality control.</p>
+                    <a href="#contact" class="cta-button">Learn More</a>
+                </div>
+                <div class="solution-card">
+                    <img src="https://via.placeholder.com/300x200?text=Sustainability" alt="Sustainability">
+                    <h3>Sustainability</h3>
+                    <p>Support eco-friendly protein production with our solutions.</p>
+                    <a href="#contact" class="cta-button">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section (Modernized) -->
-    <section id="about" class="section about">
-        <h2>About the Founder</h2>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="https://via.placeholder.com/300" alt="Daria Reis" class="founder-img">
-            </div>
-            <div class="about-text">
-                <p>With 9 years in food production and 6 years leading procurement, I’ve seen the barriers to adopting alternative proteins. I’m Daria Reis, and I’m building Tracetein to bridge the trust gap with transparent, digital storytelling.</p>
-                <p>My work with sustainable innovations like chlorella in aquaculture drives my mission to make novel foods accessible and trustworthy.</p>
-                <a href="#contact" class="cta-button">Get in Touch</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section (Modernized) -->
-    <section id="research" class="section research">
-        <h2>Research</h2>
-        <p>Dive into the science and challenges of alternative proteins.</p>
-        <div class="research-articles">
-            <div class="article-card" id="article-promise">
-                <h3>The Promise of Alternative Proteins</h3>
-                <p>Alternative proteins reduce emissions by up to 93% and use less land and water. Plant-based options like pea and soy are scalable, but cultured meat faces regulatory hurdles. These challenges drive <a href="#article-barriers" class="article-link">consumer adoption issues</a>.</p>
-                <p><strong>References:</strong> Onwezen, M. C., et al. (2024). Consumer Acceptance. MDPI.; Nature. (2024). Challenges of Alt Proteins.</p>
-            </div>
-            <div class="article-card" id="article-barriers">
-                <h3>Consumer Adoption Barriers</h3>
-                <p>Despite benefits in <a href="#article-promise" class="article-link">The Promise</a>, taste, price, and cultural norms hinder acceptance. 68% of consumers see plant-based meat as healthier, but concerns persist. See <a href="#article-strategies" class="article-link">Strategies</a> for solutions.</p>
-                <p><strong>References:</strong> Deloitte. (2024). Alt Proteins Reality Check.; Onwezen, M. C., et al. (2024). Consumer Acceptance Re-Review.</p>
-            </div>
-            <div class="article-card" id="article-strategies">
-                <h3>Strategies for Market Expansion</h3>
-                <p>Overcoming <a href="#article-barriers" class="article-link">barriers</a> requires taste parity and localized marketing. Blockchain traceability and AI enhance appeal, aligning with <a href="#article-promise" class="article-link">alt protein potential</a>. Public investment aids scalability.</p>
-                <p><strong>References:</strong> ScienceDirect. (2024). Market Opportunities.; Agilent. (2024). Future of Food.</p>
+    <!-- News Section -->
+    <section id="news" class="section news">
+        <div class="container">
+            <h2>Latest News</h2>
+            <p>Stay updated with Tracetein’s breakthroughs and updates.</p>
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>New Traceability Platform</h3>
+                    <p><small>October 15, 2025</small></p>
+                    <p>Our latest platform enhances protein tracking accuracy.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
+                <div class="news-card">
+                    <h3>Partnership Announcement</h3>
+                    <p><small>September 20, 2025</small></p>
+                    <p>Collaborating with global biotech leaders.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
+                <div class="news-card">
+                    <h3>AI Research Breakthrough</h3>
+                    <p><small>August 10, 2025</small></p>
+                    <p>Advancements in protein design with AI.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section (Modernized) -->
+    <!-- QR Scanner Section -->
+    <section id="scanner" class="section scanner">
+        <div class="container">
+            <h2>Trace with Our QR Scanner</h2>
+            <p>Scan a QR code to access detailed protein traceability data.</p>
+            <div class="scanner-container">
+                <video id="scanner-video" autoplay playsinline></video>
+                <canvas id="scanner-canvas" style="display: none;"></canvas>
+                <button id="start-scanner" class="cta-button">Start Scanner</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section id="app" class="section app">
+        <div class="container">
+            <h2>Our Mobile App</h2>
+            <p>Experience Tracetein’s traceability on the go.</p>
+            <div class="app-grid">
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x600?text=App+Screen+1" alt="App Screen 1">
+                    <p>Scan QR codes effortlessly.</p>
+                </div>
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x600?text=App+Screen+2" alt="App Screen 2">
+                    <p>View detailed traceability data.</p>
+                </div>
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x600?text=App+Screen+3" alt="App Screen 3">
+                    <p>Stay updated with real-time insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section id="contact" class="section contact">
-        <h2>Contact Us</h2>
-        <p>Join us in shaping sustainable food systems.</p>
-        <div class="contact-form">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message" required></textarea>
-            <button class="cta-button" onclick="submitForm()">Send Message</button>
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Reach out to learn how Tracetein can transform your business.</p>
+            <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form" id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <div class="error-message" id="email-error"></div>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="cta-button send-message">Send Message</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2025 Tracetein. All rights reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <div class="error-message" id="newsletter-email-error"></div>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+            <p>Contact: info@tracetein.com | +1 (123) 456-7890</p>
+            <div class="social-links">
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></a>
+                <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2A6CEA"><path d="M22 4s-.7.3-1.7.5c-.8-.4-1.6-.8-2.5-.8-1.4 0-2.6.8-3.3 1.9-.2-.1-.5-.2-.7-.3-.6-.2-1.3-.3-2-.3-1.8 0-3.3 1.1-4.1 2.7C6.3 7.9 5 9.7 5 12c0 3.3 3.1 6 7 6 3.2 0 5.8-2 6.7-4.7.2.6.5 1.1.9 1.6.6.8 1.3 1.3 2.1 1.3.3 0 .6-.1.9-.2.2-.1.5-.2.7-.4.1-.1.2-.3.3-.4v-8.4zm-10 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg></a>
+            </div>
+            <p>© 2025 Tracetein. All rights reserved.</p>
+        </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+            <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"/>
+        </svg>
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <script src="script.js"></script>
